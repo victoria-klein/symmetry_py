@@ -172,8 +172,8 @@ creates the $m=5+4=9$ dimensional representation $\rho$ of $I$ given by the $r=2
 Finite groups that have not already been implemented can be constructed by hand. For the purpose of calculating fundamental invariants and equivariants, a finite group $G$ is a nested Python dictionary with the following key/value structure:
 ```python
 {'oname': 'my_group',
- 'generators': {'_s1': _s1
-                '_s2': _s2
+ 'generators': {'_s1': _s1,
+                '_s2': _s2,
                 ...
                 '_sm': _sm},
  'allements': {'_r1': _r1,
