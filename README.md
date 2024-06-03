@@ -1,5 +1,5 @@
  # symmetry_py
-This is a repository for the Python package symmetrypy built on SymPy based off of the Maple package symmetry by Karin Gatermann.
+This is a repository for the Python package symmetry_py built on SymPy based off of the Maple package symmetry by Karin Gatermann.
 
 ## One-line overview :zap: ...
 Symmetry_py is a Python package that allows you to calculate generators of group-invariant/equivariant functions (known as fundamental invariants/equivariants) and evaluate them on large datasets for use in ML models!
