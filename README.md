@@ -30,7 +30,7 @@ Let's pick a simple example: suppose I want to consider functions $f:\mathbb{R}^
 $$\{f|f(x)=f(\rho(g)x)\forall x\in\mathbb{R}^2\forall g\in D_4\}.$$
 
 First, let's import the necessary dependencies and functions from symmetry_py.
-```
+```python
 from finite_groups import dihedral
 from finite_invariants import CMBasis
 import sympy as sp
