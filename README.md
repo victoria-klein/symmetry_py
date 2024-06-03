@@ -174,15 +174,15 @@ Finite groups that have not already been implemented can be constructed by hand.
 {'oname': 'my_group',
  'generators': {'_s1': _s1,
                 '_s2': _s2,
-                ...
+                ...,
                 '_sm': _sm},
  'allements': {'_r1': _r1,
                '_r2': _r2,
-               ...
+               ...,
                '_rn': _rn},
  'invelements': {'_r1': _r1,
                  '_r2': _r2,
-               ...
+               ...,
                '_rn': _rn},
 'order': n}
 ```
