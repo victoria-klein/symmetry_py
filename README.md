@@ -200,7 +200,7 @@ import sympy as sp
 
 D4 = dihedral(n,[5]) # This representation of D4 has dimension 2
 
-x_1, x_2 =  sp.smbols('x_1,x_2')
+x_1, x_2 =  sp.symbols('x_1,x_2')
 k = 4 # We want to generate a basis of secondary invariants up to degree 4
 
 invariants = CMBasis(D4,[x_1,x_2],k)
@@ -221,7 +221,7 @@ import sympy as sp
 gtheta = dihedral(n,[5,5]) # This representation of D4 has dimension 4
 grho = dihedral(n,[5]) # This representation of D4 has dimension 2
 
-x_1, x_2 =  sp.smbols('x_1,x_2') # These are the variables of grho
+x_1, x_2 =  sp.symbols('x_1,x_2') # These are the variables of grho
 k = 4 # We want to generate a basis of equivariants up to degree 4
 primaries = [x_1**2 + x_2**2, x_1**4 + x_2**4] # If we alreay know some primary ivnariants we can input them here
 
