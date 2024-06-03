@@ -56,12 +56,12 @@ pi = [inv.evalf(x_train) for inv in invariants['primary_invariants']]
 ```
 
 ## Constructing Groups 
-There are 5 types of finite groups that are already implemented:
+There are 2 types of finite groups that are already implemented:
 1) [Dihedral](#dihedral)
 2) [Cyclic](#cyclic)
-3) [Tetrahedral](#tetrahedral)
+<!--- 3) [Tetrahedral](#tetrahedral)
 4) [Octrahedral](#octrahedral)
-5) [Icosahedral](#icosahedral)
+5) [Icosahedral](#icosahedral) --->
 
 See below for information on how to construct the groups below. [Custom groups](#custom-groups) can also be implemented.
 
@@ -115,7 +115,7 @@ For example, let $n=6$, then
    ```
 creates the $m=4$ dimensional representation $\rho$ of $C_6$ given by the $r=3$ irreps $[i_1,i_2,i_3] = [1,2,3]$ i.e. $\rho = \rho_1 \oplus\rho_2\oplus\rho_3$.
 
-### Tetrahedral
+<!---### Tetrahedral
 The tetrahedral group $T_1$ is the group of symmetries of a tetrahedron that is isomorphic to the Symmetric group $S_4$. Recall that $T_1$ has 4 irreducible representations, 3 1-dimensional irreducible representations and 1 3-dimensional irreducible representation.
 
 There are 2 ways to create the Tetrahedral group:
@@ -161,7 +161,7 @@ For example,
    irreps = [5,3]
    g = icosahedral(irreps)
    ```
-creates the $m=5+4=9$ dimensional representation $\rho$ of $I$ given by the $r=2$ irreps $[i_1,i_2] = [5,3]$ i.e. $\rho = \rho_5\oplus\rho_3$.
+creates the $m=5+4=9$ dimensional representation $\rho$ of $I$ given by the $r=2$ irreps $[i_1,i_2] = [5,3]$ i.e. $\rho = \rho_5\oplus\rho_3$. --->
 
 ### Custom groups
 Finite groups that have not already been implemented can be constructed by hand. For the purpose of calculating fundamental invariants and equivariants, a finite group $G$ is a nested Python dictionary with the following key/value structure:
