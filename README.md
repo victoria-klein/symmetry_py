@@ -36,23 +36,23 @@ from finite_invariants import CMBasis
 import sympy as sp
 ```
 To calculate the fundamental invariants, we first create the group $D_4$ using `dihedral`, where elements are given in the 2-dimensional irrep (see [below](#dihedral) for details about the representation).
-```
+```python
 D4 = dihedral(n)
 ```
 Then we construct two SymPy symmbols $x_1$ and $x_2$ to represent variables in our domain such that $x=(x_1,x_2)\in\mathbb{R}^2$.
-```
+```python
 x_1, x_2 = sp.symbols('x_1,x_2')
 ```
 Now let's make some toy data for this example in our domain $\mathbb{R}^2$. 
 
 Primary and secondary invariants can be calculated up to degree $k\in\mathbb{N}$ using `CMBasis` (see [below](#calculating-fundamental-invariants) for more details). In this case suppose we choose $k=4$. Our code returns a dictionary with keys 'primary_invariants' and 'secondary_invariants'.
-```
+```python
 k = 4
 invariants = CMBasis(D4,[x_1,x_2],k)
 # {'primary_invariants': [x_1**2 + x_2**2, x_1**4 + x_2**4], 'secondary_invariants': [1]}
 ```
 The set of primary invariants are the set of fundamental invariants. To evaluate each primary invariant on our toy dataset `x_train`, we use SymPy's `evalf`.
-```
+```python
 pi = [inv.evalf(x_train) for inv in invariants['primary_invariants']]
 ```
 
@@ -74,7 +74,7 @@ The $n$-Dihedral group can be instantiated for any $n\geq2$, even or odd. Recall
 There are 2 ways to create the $n$-Dihedral group:
 
 a. <ins>Standard irreducible representation:</ins> Calling `dihedral` with one argument $n$ creates $D_n$ where elements are given in the first 2-dimensional irrep of the group (i.e. the 5th irrep if $n$ is even or 3rd irrep if $n$ is odd). For example, let $n=4$, then
-```
+```python
 from finite_groups import dihedral
 n = 4
 g = dihedral(4)
@@ -86,7 +86,7 @@ $$\bigoplus_{k=1}^r\rho_{i_k}=\rho,$$
 where $\rho_{i_k}$ is the $i_k$-th irrep of $D_n$ for $k=1,...,r$ and $m=\sum_{k=1}^r\text{dim}(\rho_{i_k})$.
 
 For example, let $n=4$, then 
-   ```
+   ```python
    from finite_groups import dihedral
    n = 4
    irreps = [1,5,5]
@@ -102,7 +102,7 @@ The $n$-Cyclic group can be instantiated for any $n\geq2$, even or odd. Recall t
 There are 2 ways to create the $n$-Cyclic group:
 
 a. <ins>Standard irreducible representation:</ins> Calling `cyclic` with one argument $n$ creates $C_n$ where elements are given in the the $n/2+1$-th irrep if $n$ is even or 2nd irrep if $n$ is odd. For example, let $n=3$, then
-```
+```python
 from finite_groups import cyclic
 n = 3
 g = cyclic(3)
@@ -112,7 +112,7 @@ creates $C_3$ with elements represented in the 2nd irrep that is 2-dimensional.
 b. <ins>Specific representation:</ins> Calling `cyclic` with two arguments can be done as explained for the [Dihedral group](#dihedral) above.
 
 For example, let $n=6$, then 
-   ```
+   ```python
    from finite_groups import cyclic
    n = 6
    irreps = [1,2,3]
@@ -170,7 +170,7 @@ creates the $m=5+4=9$ dimensional representation $\rho$ of $I$ given by the $r=2
 
 ### Custom groups
 Finite groups that have not already been implemented can be constructed by hand. For the purpose of calculating fundamental invariants and equivariants, a finite group $G$ is a nested Python dictionary with the following key/value structure:
-```
+```python
 {'oname': 'my_group',
  'generators': {'_s1': _s1
                 '_s2': _s2
@@ -193,7 +193,7 @@ Primary and secondary invariants of a finite group $G$ are calculated using the 
 
 It returns a Python dictionary with keys `'primary_invariants'` and `'secondary_invariants'`, with values of a list of primary invariants and a list of secondary invariants respectively. 
 
-```
+```python
 from finite_groups import dihedral
 from finite_invariants import CMBasis
 import sympy as sp
@@ -213,7 +213,7 @@ A set of equivariants of a finite group $G$ are calculated using the function `e
 
 It returns a Python dictionary with keys `'primary_invariants'` and `'equivariants'`, with values of a list of primary invariants and equivariants respectively. These are all given as SymPy matrices of SymPy expressions. The matrices are dimension dim$(g_\theta)$ and the variables are in $x_1,...,x_n$ where $n=\text{dim}g_\rho$.
 
-```
+```python
 from finite_groups import dihedral
 from finite_equivariants import equis
 import sympy as sp
