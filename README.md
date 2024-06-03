@@ -201,7 +201,7 @@ invariants = CMBasis(D4,[x_1,x_2,x_3],k)
 
 A set of equivariants of a finite group $G$ are calculated using the function `equis`. For two representations of the same group '`gtheta'` and `'grho'`, it calculates a basis of equivariants F such that $g_\theta(g) F(x)=F(g_\rho(g) x)$ for every $g\in G$. In order to run, it therefore either requires a list of primary invariants for `'grho'` in the form of SymPy expresssions in the variables, or it will calculate them itself.
 
-It returns a Python dictionary with keys `'primary_invariants'` and `'equivariants'`, with values of a list of primary invariants and equivariants respectively. These are all given as SymPy matrices of SymPy expressions. The matrices are dimension dim$(g_\theta)$ and the variables are in $x_1,\hdots,x_n$ where $n=\text{dim}g_\rho$.
+It returns a Python dictionary with keys `'primary_invariants'` and `'equivariants'`, with values of a list of primary invariants and equivariants respectively. These are all given as SymPy matrices of SymPy expressions. The matrices are dimension dim$(g_\theta)$ and the variables are in $x_1,...,x_n$ where $n=\text{dim}g_\rho$.
 
 ```
 gtheta = dihedral(n,[5,5]) # This representation of D4 has dimension 4
@@ -211,8 +211,8 @@ x1, x2 =  sp.smbols('x1:4) # These are the variables of grho
 k = 4 # We want to generate a basis of equivariants up to degree 4
 primaries = [x_1**2 + x_2**2, x_1**4 + x_2**4] # If we alreay know some primary ivnariants we can input them here
 
-invs_and_equis = equis(D4,[x_1,x_2,x_3] ,prims)
-# {'primary_invariants': [x_1**2 + x_2**2, x_1**4 + x_2**4], 'equivariants':[]}
+invs_and_equis = equis(D4,[x_1,x_2] ,prims)
+# {'primary_invariants': [x_1**2 + x_2**2, x_1**4 + x_2**4], 'equivariants':[...]}
 ```
 <!-- ## High-dimensional -->
 
