@@ -1,4 +1,4 @@
- # SymmetryPy
+ # symmetry_py
 This is a repository for the Python package symmetrypy built on SymPy based off of the Maple package symmetry by Karin Gatermann.
 
 ## One-line overview :zap: ...
