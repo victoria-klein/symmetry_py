@@ -2,9 +2,9 @@
 This is a repository for the Python package symmetrypy built on SymPy based off of the Maple package symmetry by Karin Gatermann.
 
 ## One-line overview :zap: ...
-SymmetryPy is a Python package that allows you to calculate generators of group-invariant/equivariant functions (known as fundamental invariants/equivariants) and evaluate them on large datasets for use in ML models!
+Symmetry_py is a Python package that allows you to calculate generators of group-invariant/equivariant functions (known as fundamental invariants/equivariants) and evaluate them on large datasets for use in ML models!
 
-## Quick installation
+## Dependencies
 The package has only two dependencies:
 - SymPy
 - Numpy
@@ -14,7 +14,7 @@ Quick installation with `pip` is possible:
 pip install symmetrypy
 ``` --->
 
-Manual installation is currently the installation of choice! PyPip installation is coming soon!
+Using symmetry_py in-directory is currently the method of choice. PyPip installation is coming soon!
 
 # How do I use it?
 Below are some [quick-fire examples](#quickfire-examples) on how to:
@@ -29,9 +29,10 @@ More involved references on [constructing groups](#constructing-groups) as well 
 Let's pick a simple example: suppose I want to consider functions $f:\mathbb{R}^2\to\mathbb{R}^2$ that are $D_4$-invariant. I want to calculate the set of fundamental invariants $\{\pi_1,...,\pi_r\}$ with respect to the 2-dimensional irreducible representation $\rho:D_4\times\mathbb{R}^2\to\mathbb{R}^2$ of $D_4$. By definition, this set generates the set $D_4$-invariant polynomials
 $$\{f|f(x)=f(\rho(g)x)\forall x\in\mathbb{R}^2\forall g\in D_4\}.$$
 
-First, let's import the necessary packages and modules.
+First, let's import the necessary dependencies and functions from symmetry_py.
 ```
-import symmetrypy
+from finite_groups import dihedral
+from finite_invariants import CMBasis
 import sympy as sp
 ```
 To calculate the fundamental invariants, we first create the group $D_4$ using `dihedral`, where elements are given in the 2-dimensional irrep (see [below](#dihedral) for details about the representation).
@@ -74,6 +75,7 @@ There are 2 ways to create the $n$-Dihedral group:
 
 a. <ins>Standard irreducible representation:</ins> Calling `dihedral` with one argument $n$ creates $D_n$ where elements are given in the first 2-dimensional irrep of the group (i.e. the 5th irrep if $n$ is even or 3rd irrep if $n$ is odd). For example, let $n=4$, then
 ```
+from finite_groups import dihedral
 n = 4
 g = dihedral(4)
 ```
@@ -85,6 +87,7 @@ where $\rho_{i_k}$ is the $i_k$-th irrep of $D_n$ for $k=1,...,r$ and $m=\sum_{k
 
 For example, let $n=4$, then 
    ```
+   from finite_groups import dihedral
    n = 4
    irreps = [1,5,5]
    g = dihedral(n,irreps)
@@ -100,6 +103,7 @@ There are 2 ways to create the $n$-Cyclic group:
 
 a. <ins>Standard irreducible representation:</ins> Calling `cyclic` with one argument $n$ creates $C_n$ where elements are given in the the $n/2+1$-th irrep if $n$ is even or 2nd irrep if $n$ is odd. For example, let $n=3$, then
 ```
+from finite_groups import cyclic
 n = 3
 g = cyclic(3)
 ```
@@ -109,6 +113,7 @@ b. <ins>Specific representation:</ins> Calling `cyclic` with two arguments can b
 
 For example, let $n=6$, then 
    ```
+   from finite_groups import cyclic
    n = 6
    irreps = [1,2,3]
    g = cyclic(n,irreps)
@@ -166,7 +171,8 @@ creates the $m=5+4=9$ dimensional representation $\rho$ of $I$ given by the $r=2
 ### Custom groups
 Finite groups that have not already been implemented can be constructed by hand. For the purpose of calculating fundamental invariants and equivariants, a finite group $G$ is a nested Python dictionary with the following key/value structure:
 ```
-{'generators': {'_s1': _s1
+{'oname': 'my_group',
+ 'generators': {'_s1': _s1
                 '_s2': _s2
                 ...
                 '_sm': _sm},
@@ -188,6 +194,10 @@ Primary and secondary invariants of a finite group $G$ are calculated using the 
 It returns a Python dictionary with keys `'primary_invariants'` and `'secondary_invariants'`, with values of a list of primary invariants and a list of secondary invariants respectively. 
 
 ```
+from finite_groups import dihedral
+from finite_invariants import CMBasis
+import sympy as sp
+
 D4 = dihedral(n,[5]) # This representation of D4 has dimension 2
 
 x1, x2 =  sp.smbols('x1:4)
@@ -204,6 +214,10 @@ A set of equivariants of a finite group $G$ are calculated using the function `e
 It returns a Python dictionary with keys `'primary_invariants'` and `'equivariants'`, with values of a list of primary invariants and equivariants respectively. These are all given as SymPy matrices of SymPy expressions. The matrices are dimension dim$(g_\theta)$ and the variables are in $x_1,...,x_n$ where $n=\text{dim}g_\rho$.
 
 ```
+from finite_groups import dihedral
+from finite_equivariants import equis
+import sympy as sp
+
 gtheta = dihedral(n,[5,5]) # This representation of D4 has dimension 4
 grho = dihedral(n,[5]) # This representation of D4 has dimension 2
 
